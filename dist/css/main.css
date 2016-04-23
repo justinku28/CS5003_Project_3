@@ -1,0 +1,84 @@
+/* Global values */
+body {
+	font-family: 'Noto Sans', sans-serif; 
+	font-kerning: inherit;
+	font-kerning: initial;
+	font-kerning: unset;
+}
+/* Top Header Wrapper */
+#wrapper {
+	width:100%;
+	margin:auto 0;
+	padding:auto 0;
+	display:block;
+	background-image:url("../img/bg_dummy.jpg");
+	background-size: cover;
+	height:800px;
+}
+/* Main Logo */
+#logo {
+	background:transparent;
+	padding:12px 12px 12px 12px;
+}
+#logo h1 {
+	color:white;
+	font-size:29px !important;
+	font-family: 'Noto Sans', sans-serif; 
+	font-weight: bold;
+}
+/* Main Navigation */
+.navigation {
+	margin-bottom: 10px;
+    margin-top: 20px;
+    padding:12px 12px 12px 12px;
+	display:inline-block;
+	position:relative;
+}
+.navigation ul li {
+	display:inline-block;
+	padding:0px 10px;
+}
+.navigation ul li a {
+	display:inline-block;
+	font-size:14px;
+	font-weight: bold;
+	font-family: 'Noto Sans', sans-serif; 
+	color:#fff !important;
+}
+/* Main Promo Homepage */
+#promo {
+	display:inline-block;
+	text-align: center;
+	margin:0 auto;
+	padding:0 auto;
+}
+#promo h1 {
+	font-family: 'Noto Sans', sans-serif; 
+	color:#fff;
+	font-size:6em;
+	font-weight: bold;
+	font-style: italic;
+}
+.promo_text {
+	width:50%;
+	margin:0 auto;
+	padding:0 auto;
+	position: relative;
+	display: inline-block;
+}
+.promo_text h2 {
+	color:#fff;
+}
+
+.btn-default {
+	background-color: #ccc !important;
+	color:#000 !important;
+	font-weight: bold;
+	padding: 20px 50px 20px 50px;
+}
+
+.btn-default:hover {
+	background-color: gold !important;
+	color:white !important;
+	padding: 20px 50px 20px 50px;
+}
