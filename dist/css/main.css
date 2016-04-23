@@ -30,6 +30,7 @@ p {
 	font-size:29px !important;
 	font-family: 'Noto Sans', sans-serif; 
 	font-weight: bold;
+	letter-spacing: 1.5px;
 }
 /* Main Navigation */
 .navigation {
@@ -49,6 +50,7 @@ p {
 	font-weight: bold;
 	font-family: 'Noto Sans', sans-serif; 
 	color:#fff !important;
+	text-transform: uppercase;
 }
 /* Main Promo Homepage */
 #promo {
@@ -63,6 +65,8 @@ p {
 	font-size:6em;
 	font-weight: bold;
 	font-style: italic;
+	letter-spacing: 1.5px;
+	margin:10px 0px 0px 0px !important;
 }
 .promo_text {
 	width:50%;
@@ -72,21 +76,27 @@ p {
 	display: inline-block;
 }
 .promo_text h2 {
-	color:#fff;
+	border-bottom: 5px solid white;
+	border-top: 5px solid white;
+    color: #fff;
+    padding: 10px 0 10px 0;
 }
 .btn-default {
 	background-color: #FDBE6A !important;
-	color:#000 !important;
+	color:#8D5723 !important;
 	border:1px solid #FDBE6A;
 	font-weight: lighter;
 	border-radius:20px;
 	font-size:16px;
 	padding: 10px 50px 10px 50px;
 	margin:50px 0px;
+	-webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+    -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+    box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
 }
 .btn-default:hover {
 	background-color: #ccc !important;
-	color:white !important;
+	color:#8D5723 !important;
 	padding: 10px 50px 10px 50px;
 	font-size:16px;
 }
@@ -163,14 +173,39 @@ p {
 #graph-map .graph-text h1 {
 	padding:20px 0px;
 	color:#fff;
+	font-size:4em;
 }
 #graph-map .graph-text p {
 	color:#fff;
 	padding:20px 0px;
 }
-
 #graph-map .graph-wrapper-map {
 	width:100%;
 	height:500px;
 	background:white;
+}
+/* Main Footer */
+footer {
+	height:100%;
+	display: block;
+	margin:0 auto;
+	padding:50px 0px;
+	background:#262f36;
+	-webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+    color:white;
+}
+
+footer h4 {
+	font-weight:bold;
+	font-size:12px;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	padding:0px 0px 10px 0px;
+	border-bottom: 2px solid white;
+}
+
+footer p {
+	font-size:12px;
 }
