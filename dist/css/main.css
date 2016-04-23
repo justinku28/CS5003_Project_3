@@ -4,6 +4,11 @@ body {
 	font-kerning: inherit;
 	font-kerning: initial;
 	font-kerning: unset;
+	background: #D8D6D5;
+}
+
+p {
+	font-size:16px;
 }
 /* Top Header Wrapper */
 #wrapper {
@@ -69,16 +74,103 @@ body {
 .promo_text h2 {
 	color:#fff;
 }
-
 .btn-default {
-	background-color: #ccc !important;
+	background-color: #FDBE6A !important;
 	color:#000 !important;
-	font-weight: bold;
-	padding: 20px 50px 20px 50px;
+	border:1px solid #FDBE6A;
+	font-weight: lighter;
+	border-radius:20px;
+	font-size:16px;
+	padding: 10px 50px 10px 50px;
+	margin:50px 0px;
+}
+.btn-default:hover {
+	background-color: #ccc !important;
+	color:white !important;
+	padding: 10px 50px 10px 50px;
+	font-size:16px;
+}
+/* Main Graph 1 on Homepage */
+#graph-1 {
+	height:800px;
+	display: block;
+	margin:0 auto;
+	padding:0 auto;
+	background:#23293F;
+	-webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+}
+#graph-1 .graph-text {
+	padding:50px;
+}
+#graph-1 .graph-text h1 {
+	padding:20px 0px;
+	color:white;
+}
+#graph-1 .graph-text p {
+	color:white;
+}
+#graph-1 .graph-dummy {
+	height:500px;
+	display:block;
+	background:white;
+	margin:50px 0px;
+}
+/* Main Graph 2 on Homepage */
+#graph-2 {
+	height:800px;
+	display: block;
+	margin:0 auto;
+	padding:0 auto;
+	background:#D8D6D5;
+	-webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+}
+#graph-2 .graph-text {
+	padding:50px;
+	margin:50px 0px;
+}
+#graph-2 .graph-text h1 {
+	padding:20px 0px;
+	color:#6C6596;
+}
+#graph-2 .graph-text p {
+	color:#6C6596;
+}
+#graph-2 .graph-dummy {
+	height:500px;
+	margin:50px 0px;
+	display:block;
+	background:white;
+}
+/* Main Graph-map on Homepage */
+#graph-map {
+	height:100%;
+	display: block;
+	margin:0 auto;
+	padding:50px 0px;
+	background:#4A4C57;
+	-webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
+}
+#graph-map .graph-text {
+	padding:0px auto;
+	margin:0px auto;
+}
+#graph-map .graph-text h1 {
+	padding:20px 0px;
+	color:#fff;
+}
+#graph-map .graph-text p {
+	color:#fff;
+	padding:20px 0px;
 }
 
-.btn-default:hover {
-	background-color: gold !important;
-	color:white !important;
-	padding: 20px 50px 20px 50px;
+#graph-map .graph-wrapper-map {
+	width:100%;
+	height:500px;
+	background:white;
 }
