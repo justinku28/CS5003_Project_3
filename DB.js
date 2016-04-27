@@ -7,9 +7,10 @@
 //
 // NOTE: *NOT* your school/university username and password!
 var nano = require('nano')('http://ojd2:q4vPxRFF@pc2-023-l.cs.st-andrews.ac.uk:20148');
+// NOTE: Access the portal here: ... /_utils/index.html
 
 // our application's model, populated with some entries and tags
-var entryID = { "next_entry" : 10 };
+var entryID = { "next_entry" : 4 };
 var init_history = { "weather_history" :
                     {"1": {"city": "New York", "lon ":"138.933334", "lat":"34.966671", "country":"2016-03-25T17:11:45.385Z", "weather":"Clouds", "description":"overcast clouds", "dateSubmit":"2014-07-23 09:00:00"},
                     "2": {"city": "London", "coord":"lon : 138.933334,lat : 34.966671", "country":"2016-03-25T17:11:45.385Z", "weather":"Clouds", "description":"overcast clouds", "dateSubmit":"2014-07-23 09:00:00"},

@@ -71,9 +71,9 @@ function addweather(req, res) {
                 if (!err) {
                     var now = new Date();
                     var jsonDate = now.toJSON();
-                    weather["weather_data"][next_entry] = { city: city, lon: lon, lat: lat, country: country, weather: weather, description: description, dateSubmit:jsonDate};
+                    weather["weather_data"][next_entry] = { weather: weather };
                     entryID["next_entry"] = next_entry + 1;
-                    console.log("Submitted the weather: " + city + country + description);
+                    console.log("Submitted the weather: " + weather );
                     // Add the new data to CouchDB (separate function since
                     // otherwise the callbacks get very deeply nested!)
                     updateweather_db(entryID, weather);
