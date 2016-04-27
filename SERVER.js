@@ -17,7 +17,7 @@ var sanitizer = require('sanitizer');
 var nano = require('nano')('http://ojd2:q4vPxRFF@pc2-023-l.cs.st-andrews.ac.uk:20148');
 
 
-var weather_db = nano.db.use('weather_history'); // Reference to the database storing the weather history data
+var weather_db = nano.db.use('weather'); // Reference to the database storing the weather history data
 
 //---------------------------------------------------------------------------------------------------
 // FUNCTIONS FOR THE ROUTING SECTION TO CALL 
@@ -71,7 +71,7 @@ function addweather(req, res) {
                 if (!err) {
                     var now = new Date();
                     var jsonDate = now.toJSON();
-                    weather["weather_history"][next_entry] = { city: city, lon: lon, lat: lat, country: country, weather: weather, description: description, dateSubmit:jsonDate};
+                    weather["weather_data"][next_entry] = { city: city, lon: lon, lat: lat, country: country, weather: weather, description: description, dateSubmit:jsonDate};
                     entryID["next_entry"] = next_entry + 1;
                     console.log("Submitted the weather: " + city + country + description);
                     // Add the new data to CouchDB (separate function since
@@ -92,8 +92,8 @@ function addweather(req, res) {
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 function listWeather(req, res) {
-        weather_db.get('weather_history', { revs_info : true }, function (err, weather) {
-            res.json(weather["weather_history"]);
+        weather_db.get('weather_info', { revs_info : true }, function (err, weather) {
+            res.json(weather["weather_data"]);
         });
 }
 //---------------------------------------------------------------------------------------------------
@@ -125,7 +125,7 @@ app.use(express.static('dist'));
 
 
 // STILL TO DO:
-app.get('/listWeather/', listWeather);
+app.get('/weather/', listWeather);
 
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
