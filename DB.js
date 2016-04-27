@@ -25,7 +25,7 @@ nano.db.create('weather', function (err, body) {
     if (!err) {
         
         // Database didn't exist, so populate it with some initial data
-        weatherdb.insert(init_history, 'weather_history', function(err, body) {
+        weatherdb.insert(init_history, 'weather_data', function(err, body) {
             if (!err) {
                 console.log("Initialised weather_history:");
                 console.log(body);
