@@ -4,17 +4,19 @@
 
 // You will also need to replace the server name with the details given by
 // couchdb-setup
-//
+// couchdb-start
+// THEN: run node SERVER.js -> node DB.js
 // NOTE: *NOT* your school/university username and password!
 var nano = require('nano')('http://ojd2:q4vPxRFF@pc2-023-l.cs.st-andrews.ac.uk:20148');
+// var nano = require('nano')('http://ojd2:q4vPxRFF@localhost:5984');
 // NOTE: Access the portal here: ... /_utils/index.html
 
 // our application's model, populated with some entries and tags
-var entryID = { "next_entry" : 4 };
+var entryID = { "next_entry" : 3 };
 var init_history = { "weather_history" :
-                    {"1": {"city": "New York", "lon ":"138.933334", "lat":"34.966671", "country":"2016-03-25T17:11:45.385Z", "weather":"Clouds", "description":"overcast clouds", "dateSubmit":"2014-07-23 09:00:00"},
-                    "2": {"city": "London", "coord":"lon : 138.933334,lat : 34.966671", "country":"2016-03-25T17:11:45.385Z", "weather":"Clouds", "description":"overcast clouds", "dateSubmit":"2014-07-23 09:00:00"},
-                    "3": {"city": "St. Andrews", "coord":"lon : 138.933334,lat : 34.966671", "country":"2016-03-25T17:11:45.385Z", "weather":"FUCKING RAINING / HAIL / SUNSHINE AGAIN", "description":"overcast clouds", "dateSubmit":"2014-07-23 09:00:00"},  
+                    {"1": {"city": "New York", "coord":"lon : 138.933334,lat : 34.966671", "country":"2016-03-25T17:11:45.385Z", "overview":"Clouds", "description":"overcast clouds", "dateSubmit":"2014-07-23 09:00:00"},
+                    "2": {"city": "London", "coord":"lon : 138.933334,lat : 34.966671", "country":"2016-03-25T17:11:45.385Z", "overview":"Clouds", "description":"overcast clouds", "dateSubmit":"2014-07-23 09:00:00"},
+                    "3": {"city": "St. Andrews", "coord":"lon : 138.933334,lat : 34.966671", "country":"2016-03-25T17:11:45.385Z", "overview":"FUCKING RAINING / HAIL / SUNSHINE AGAIN", "description":"overcast clouds", "dateSubmit":"2014-07-23 09:00:00"},  
              	   } };
 
 nano.db.destroy('weather', function (err, body) {

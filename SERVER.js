@@ -15,6 +15,7 @@ var sanitizer = require('sanitizer');
 // couchdb. Will need to include password and user name if this is setup in couchdb
 // "http://user:password@addressToCouchdb"
 var nano = require('nano')('http://ojd2:q4vPxRFF@pc2-023-l.cs.st-andrews.ac.uk:20148');
+// var nano = require('nano')('http://ojd2:q4vPxRFF@localhost:5984');
 
 
 var weather_db = nano.db.use('weather'); // Reference to the database storing the weather history data
@@ -25,18 +26,18 @@ var weather_db = nano.db.use('weather'); // Reference to the database storing th
 
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
-// Once reply or a tag has been added to the weather data, update weather_history 
+// Once reply or a tag has been nadded to the weather data, update weather_history 
 // Function very much like updateqa_db 
 // Note, does not update tag_info. See updateTaskInfo for that. 
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
-function updateWeatherHistory(weather) {
-    weather_db.insert(weather, 'weather_history', function(err_t, t) { 
-        console.log("Added reply or a tag to a weather to CouchDB");
-        //console.log(err_e);
-        console.log(err_t);
-    });
-}
+// function updateWeatherHistory(weather) {
+//     weather_db.insert(weather, 'weather_history', function(err_t, t) { 
+//         console.log("Added reply or a tag to a weather to CouchDB");
+//         //console.log(err_e);
+//         console.log(err_t);
+//     });
+// }
 
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
@@ -45,7 +46,7 @@ function updateWeatherHistory(weather) {
 //---------------------------------------------------------------------------------------------------
 function updateWeather_db(entryID, weather) {
     weather_db.insert(entryID, 'entryID', function(err_e, e) {
-        weather_db.insert(weather, 'weather_history', function(err_t, t) { 
+        weather_db.insert(weather, 'weather_data', function(err_t, t) { 
             console.log("Added weather item to CouchDB");
             console.log(err_e);
             console.log(err_t);
@@ -61,22 +62,28 @@ function updateWeather_db(entryID, weather) {
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 function addweather(req, res) {
-    var weather = req.body;
-    // Sanatise weather here
+    var weather = JSON.parse(req.body);
+    var city = weather.city;
+    var lon = weather.lon;
+    var lat = weather.lat;
+    var country = weather.country;
+    var overview = weather.overview;
+    var description = weather.description;
 
     weather_db.get('entryID', { revs_info : true }, function (err, entryID) {
         if (!err) {
             var next_entry = entryID["next_entry"];
-            weather_db.get('weather_history', { revs_info : true }, function (err, weather) {
+            weather_db.get('weather_data', { revs_info : true }, function (err, weather) {
                 if (!err) {
                     var now = new Date();
                     var jsonDate = now.toJSON();
-                    weather["weather_data"][next_entry] = { weather: weather };
+                    weather["weather_history"][next_entry] = { city: city, lon: lon, lat: lat, country: country, overview: overview, 
+                        description: description, dateSubmit: jsonDate};
                     entryID["next_entry"] = next_entry + 1;
-                    console.log("Submitted the weather: " + weather );
+                    console.log("Submitted the weather for the following: " + city );
                     // Add the new data to CouchDB (separate function since
                     // otherwise the callbacks get very deeply nested!)
-                    updateweather_db(entryID, weather);
+                    updateWeather_db(entryID, weather);
 
                     res.writeHead(201, {'Location' : next_entry});
                     res.end();
@@ -92,8 +99,8 @@ function addweather(req, res) {
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 function listWeather(req, res) {
-        weather_db.get('weather_info', { revs_info : true }, function (err, weather) {
-            res.json(weather["weather_data"]);
+        weather_db.get('weather_data', { revs_info : true }, function (err, weather) {
+            res.json(weather["weather_history"]);
         });
 }
 //---------------------------------------------------------------------------------------------------
@@ -136,7 +143,7 @@ app.get('/weather/', listWeather);
 app.post('/weather/', addweather);
 
 
-app.listen(8080);
+app.listen(5984);
 console.log('Server running at http://127.0.0.1:8080/');    
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------

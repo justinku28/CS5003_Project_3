@@ -21,7 +21,7 @@ function init() {
 * Some globals:
 *
 **/
-var city, lon, lat, country, city_weather, description, dateSubmit;
+var city, lon, lat, country, overview, description, dateSubmit;
 
 /**
 * 
@@ -91,15 +91,35 @@ function print(objects) {
 		lon = objects.coord.lon;
 		lat = objects.coord.lat;
 		country = objects.sys.country;
-		city_weather = objects.weather[0].main;
+		overview = objects.weather[0].main;
 		description = objects.weather[0].description;
 		dateSubmit = objects.dt;
-		
-
 	});
-
-
 }
+
+function displayWeather(objects) {
+	Object.keys(objects).forEach(function(k) {
+		console.log("Printed Forcast JSON objects associated with the following GET URL above : ");
+		console.log(objects[k]);
+	});
+}
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// Fetch the weather data for the particular City that has been called.
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+function fetchTemp(weather){
+   req = new XMLHttpRequest();
+    req.open("GET", "weather");
+    req.setRequestHeader("Content-Type", "text/plain");    
+    req.onreadystatechange = function() {
+  		if (req.readyState == 4) {
+  			displayWeather(JSON.parse(req.responseText));
+  		}
+    }
+    req.send(null);
+}
+
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 // Add a new weather object by making POST request to node server
@@ -110,11 +130,13 @@ function sendWeather(weather){
     req = new XMLHttpRequest();
     req.open("POST", "weather");
     req.setRequestHeader("Content-Type", "text/plain");
-    req.send('{"city":"'+city+'","lon":"'+lon+'","lat":"'+lat+'","country":"'+country+'","weather":"'+city_weather+'","description":"'+description+'","dateSubmit":"'+dateSubmit+'"}');
+    req.send('{"city":"'+city+'","lon":"'+lon+'","lat":"'+lat+'","country":"'+country+'","overview":"'+overview+'","description":"'+description+'","dateSubmit":"'+dateSubmit+'"}');
     req.onreadystatechange = function() {
         //console.log(req.responseText);
      	if (req.readyState == 4) {
-     		console.log('sent weather!');  		
+     		console.log('sent weather for: ' + city + overview);
+     		// Call fetchTemp
+     		// fetchTemp();	
      	}
     }
     // req.send(weather);
