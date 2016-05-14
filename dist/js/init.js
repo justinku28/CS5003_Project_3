@@ -15,76 +15,96 @@ function init() {
 	// Prints the json objects.
 
 	// http://api.openweathermap.org/data/2.5/forecast?q=London,us&mode=json&appid=be0b44175983b4c5337b54cbf2356b9c
-
-/**
-* 
-* Some globals:
-*
-**/
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// Some globals:
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
 var city, lon, lat, country, overview, description, dateSubmit;
 
-/**
-* 
-* Var Base URL for forecast only. The following variable will store our base URL for all API calls.
-* You can search weather forecast for 5 days with data every 3 hours by city name. 
-* All weather data can be obtained in JSON, XML or HTML format. 
-* Parameters:
-* @q="city_name" and "country_code" divided by comma, use ISO 3166 country codes.
-* 
-**/
+// ----------------------------------------------------------------------
+// ---------------------------------------------------------------------- 
+// Var Base URL for forecast only. The following variable will store our base URL for all API calls.
+// You can search weather forecast for 5 days with data every 3 hours by city name. 
+// All weather data can be obtained in JSON, XML or HTML format. 
+// Parameters:
+// @q="city_name" and "country_code" divided by comma, use ISO 3166 country codes.
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
 var baseURLForcast = "http://api.openweathermap.org/data/2.5/forecast?q=";
-/**
-* 
-* Var Base URL for weather only. The following variable will store our base URL for all API calls.
-* You can search weather forecast for 5 days with data every 3 hours by city name. 
-* All weather data can be obtained in JSON, XML or HTML format. 
-* Parameters:
-* See the following URL for parameter details under weather: http://openweathermap.org/forecast5
-* 
-**/
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// Var Base URL for weather only. The following variable will store our base URL for all API calls.
+// You can search weather forecast for 5 days with data every 3 hours by city name. 
+// All weather data can be obtained in JSON, XML or HTML format. 
+// Parameters:
+// See the following URL for parameter details under weather: http://openweathermap.org/forecast5
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
 var baseURLWeather = "http://api.openweathermap.org/data/2.5/weather?q=";
-/**
-* 
-* Var API key. This will be concatenated onto the end of our callback string. 
-* Currently, the following API is from Ollie's account: ojd2.
-*
-**/
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// Var API key. This will be concatenated onto the end of our callback string. 
+// Currently, the following API is from Ollie's account: ojd2.
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
 var API = "&appid=" + "be0b44175983b4c5337b54cbf2356b9c";
-var ForcastURL, WeatherURL;
-/**
-* 
-* The following apiForcast() function calls the API URL for forcast only along with the city parameter.
-* This function generates our API URL in the accepted format for the Open weather API.
-*
-**/
+// var ForcastURL, WeatherURL;
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// The following apiForcast() function calls the API URL for forcast only along with the city parameter.
+// This function generates our API URL in the accepted format for the Open weather API.
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
 function APIForcast(city) {
 	ForcastURL = baseURLForcast + city + API; // Create another base URL
 }
-/**
-* 
-* The following APIWeather() function calls the API URL for weather only along with the city parameter.
-* This function generates our API URL in the accepted format for the Open weather API.
-*
-**/
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// The following APIWeather() function calls the API URL for weather only along with the city parameter.
+// This function generates our API URL in the accepted format for the Open weather API.
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
 function APIWeather(city) {
 	WeatherURL = baseURLWeather + city + API; // Create another base URL.
 }
 
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// Retrieve input data for user destination from input element
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+var btn = document.getElementById("getDestination");
+btn.onclick = function() { 
+    
+    input = $('.destination').val().toString();
+    console.log(input);
+    alert("Search weather for " + input);
+    // Update charts
+    APIForcast(input);
+    APIWeather(input);
+    getAPIResponse(WeatherURL);
+    //getAPIResponse(ForcastURL);
+    $("#graph-1 .container").fadeOut(1000);
+    $("#graph-1 .container").fadeIn(1200);
+    $("#graph-2 .container").fadeOut(1700);
+    $("#graph-2 .container").fadeIn(2100);
+    $("#graph-map .container").fadeOut(2800);
+    $("#graph-map .container").fadeIn(3200);
 
-// Perform Callbacks for API URLs.
+ }; 
+ // Perform Default Callbacks for API URLs on page Load.
 APIForcast("Fife");
 APIWeather("New York");
-
-
-/**
-* 
-* The following print() function calls the response and returns the JSON.
-* Next, the JSON (objects) is printed using the Object.Keys() method.
-*
-**/
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// The following print() function calls the response and returns the JSON.
+// Next, the JSON (objects) is printed using the Object.Keys() method.
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
 function print(objects) {
 	Object.keys(objects).forEach(function(k) {
-		console.log("Printed Forcast JSON objects associated with the following GET URL above : ");
+		console.log("Printed Forecast JSON objects associated with the following GET URL above : ");
 		console.log(objects[k]);
 
 		city = objects.name;
@@ -161,12 +181,10 @@ function getAPIResponse(url) {
     req.send(null);
 }
 
-// Call our getResponse(); method for a Forcast
+// Call our getResponse(); method for a Forecast
 //getAPIResponse(ForcastURL);
 // Call our getResponse(); method for a Weather
 getAPIResponse(WeatherURL);
-
-
 
 
 

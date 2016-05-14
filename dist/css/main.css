@@ -6,7 +6,6 @@ body {
 	font-kerning: unset;
 	background: #D8D6D5;
 }
-
 p {
 	font-size:16px;
 }
@@ -88,8 +87,8 @@ p {
 	font-weight: lighter;
 	border-radius:20px;
 	font-size:16px;
-	padding: 10px 50px 10px 50px;
-	margin:50px 0px;
+	padding: 8px 50px 8px 50px;
+	margin:30px 0px;
 	-webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
     -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
     box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
@@ -97,12 +96,12 @@ p {
 .btn-default:hover {
 	background-color: #ccc !important;
 	color:#8D5723 !important;
-	padding: 10px 50px 10px 50px;
+	padding: 8px 50px 8px 50px;
 	font-size:16px;
 }
 /* Main Graph 1 on Homepage */
 #graph-1 {
-	height:800px;
+	height:650px;
 	display: block;
 	margin:0 auto;
 	padding:0 auto;
@@ -124,8 +123,9 @@ p {
 #graph-1 .graph-dummy {
 	height:500px;
 	display:block;
-	background:white;
+	background:transparent;
 	margin:50px 0px;
+	border: none;
 }
 /* Main Graph 2 on Homepage */
 #graph-2 {

@@ -14,7 +14,7 @@ var sanitizer = require('sanitizer');
 // You will also need to replace the server name with the details given by
 // couchdb. Will need to include password and user name if this is setup in couchdb
 // "http://user:password@addressToCouchdb"
-var nano = require('nano')('http://ojd2:q4vPxRFF@pc2-023-l.cs.st-andrews.ac.uk:20148');
+var nano = require('nano')('http://ojd2:LW9Rh9pd@pc3-035-l.cs.st-andrews.ac.uk:20148');
 // var nano = require('nano')('http://ojd2:q4vPxRFF@localhost:5984');
 
 
@@ -144,7 +144,7 @@ app.post('/weather/', addweather);
 
 
 app.listen(5984);
-console.log('Server running at http://127.0.0.1:8080/');    
+console.log('Server running at http://127.0.0.1:5984/');    
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
 // End of Routing Middleware 

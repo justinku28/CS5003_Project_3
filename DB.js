@@ -1,13 +1,11 @@
 /// Run this first, to initialise the data in CouchDB
 
-// WARNING: It will delete any existing database called 'tasks'!
-
 // You will also need to replace the server name with the details given by
 // couchdb-setup
 // couchdb-start
 // THEN: run node SERVER.js -> node DB.js
 // NOTE: *NOT* your school/university username and password!
-var nano = require('nano')('http://ojd2:q4vPxRFF@pc2-023-l.cs.st-andrews.ac.uk:20148');
+var nano = require('nano')('http://ojd2:LW9Rh9pd@pc3-035-l.cs.st-andrews.ac.uk:20148');
 // var nano = require('nano')('http://ojd2:q4vPxRFF@localhost:5984');
 // NOTE: Access the portal here: ... /_utils/index.html
 

@@ -1,0 +1,116 @@
+/* Forecast Visualization chart */
+.forecast_chart text {
+  font: 12px;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight:lighter;
+  text-anchor: middle;
+  fill:#FFFFF9;
+}
+.axis text {
+  font: 12px;
+  font-weight:lighter;
+  font-family: 'Noto Sans', sans-serif;
+  fill:#FFFFF9;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #FFFFF9;
+  stroke-width:3px;
+  shape-rendering: crispEdges;
+  -webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+}
+.x.axis path {
+  fill: none;
+  stroke: #FFFFF9;
+  font-weight:lighter;
+  stroke-width:3px;
+  shape-rendering: crispEdges;
+  -webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+}
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: #d8d6d5;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight:lighter;
+  color: #6c6596;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+}
+.d3-tip .dateTimeTitle {
+  color:#6c6596 !important;
+}
+.d3-tip .weatherTitle {
+  color:#333 !important;
+}
+.d3-tip .tempTitle {
+  color:#333 !important;
+}
+.d3-tip .precepTitle {
+  color:#333 !important;
+}
+.d3-tip .windTitle {
+  color:#333 !important;
+}
+.d3-tip img.icons{
+	display: inline;}
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  font-family: 'Noto Sans', sans-serif;
+  color: #d8d6d5;
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+  -webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+}
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
+}
+/* Main Weather Overview */
+.weather_chart text {
+  font: 12px;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight:lighter;
+  text-anchor: middle;
+}
+.weather_chart .axis text {
+  font: 12px;
+  font-family: 'Noto Sans', sans-serif;
+  font-weight:lighter;
+}
+.weather_chart .axis path,
+.axis line {
+  fill: none;
+  stroke: #FFFFF9;
+  shape-rendering: crispEdges;
+  -webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+}
+.weather_chart .x.axis path {
+  fill: none;
+  stroke: #FFFFF9;
+  stroke-width:3px;
+  shape-rendering: crispEdges;
+  -webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+  box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.95);
+}
