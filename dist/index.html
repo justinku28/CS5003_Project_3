@@ -13,8 +13,13 @@
     <link href="css/vis.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <!-- D3 Lib -->
     <script src="js/vis/d3/d3.v3.min.js"></script>
     <script src="js/vis/d3/d3.tip.js"></script>
+    <!-- Google Maps -->
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -59,6 +64,19 @@
     	</div><!-- /.end /.container -->
 	</div> <!-- end /.wrapper --> 
   <!-- End Promo -->
+  <!-- Begin Introduction -->
+  <div id="introduction">
+    <div class="container">
+      <div class="row">
+        <div id="introduction-meta" class="col-md-12">
+          <!-- Weather Meta Title for city will Go Here -->
+        </div>
+        <div id="introduction-meta-info" class="col-md-12">
+          <!-- Weather Meta information for city will Go Here -->
+        </div>
+      </div><!-- /. End /.container -->
+    </div><!-- /. End /.row -->
+  </div><!-- End /.graph-1 -->
   <!-- Begin Graph-1 -->
   <div id="graph-1">
     <div class="container">
@@ -69,11 +87,10 @@
           </a>
         </div>
         <div class="graph-text col-md-6">
-        <h1>The weather forecast <br>for the next few days!</h1>
-        <p>Right, I'll tell you an anecdote. In 1974 I was catching the London train from Crewe station. It was very crowded; I found myself in a last-minute rush for the one remaining seat beside a tall, good-looking man with collar-length hair, it was the seventies; buckaroo! I looked up and saw it was none other than Peter Purves, it was the height of his Blue Peter fame. He said, "You jammy bastard" and quick as a flash, I replied, "Don't be blue, Peter!" Needless to say, I had the last laugh, now fuck off!</p>
-
-        <p>Right, I'll tell you an anecdote. In 1974 I was catching the London train from Crewe station. It was very crowded; I found myself in a last-minute rush for the one remaining seat beside a tall, good-looking man with collar-length hair.</p>
-        </div>
+          <div id="graph-1-meta">
+            <!-- Graph-1-meta info here -->
+          </div> <!-- /. END /.graph-1-meta -->
+        </div><!-- /. End /.graph-text -->
       </div><!-- /. End /.container -->
     </div><!-- /. End /.row -->
   </div><!-- End /.graph-1 -->
@@ -100,16 +117,13 @@
     <div class="container">
       <div class="row">
         <div class="graph-text col-md-12 center-block text-center">
-            <h1>Half the world away!</h1>
+            <h1>A complete map overview!</h1>
             <p>Right, I'll tell you an anecdote. In 1974 I was catching the London train from Crewe station. It was very crowded; I found myself in a last-minute rush for the one remaining seat beside a tall, good-looking man with collar-length hair, it was the seventies; buckaroo! I looked up and saw it was none other than Peter Purves, it was the height of his Blue Peter fame. He said, "You jammy bastard" and quick as a flash, I replied, "Don't be blue, Peter!" Needless to say, I had the last laugh, now fuck off!</p>
-        </div>
-        <div class="graph-wrapper-map col-md-12">
-           <a href="#" class="graph-dummy thumbnail">
-              Graph to go here
-          </a>
-        </div>
+        </div><!--- /. End /.graph-text -->
       </div><!-- /. End /.container -->
     </div><!-- /. End /.row -->
+    <div id="map-canvas" class="graph-wrapper-map col-md-12">
+    </div><!-- End /.graph-wrapper-map -->
   </div><!-- End /.graph-map -->
 
 <!-- Begin /.footer -->
@@ -156,5 +170,6 @@
     <!-- Load D3 Charts-->
     <script src="js/vis/weather_forecast.js"></script>
     <!-- <script src="js/vis/weather_overview.js"></script> -->
+   <!--  <script src="js/vis/weather_map.js"></script> -->
   </body>
 </html>

@@ -10,11 +10,12 @@ var json = require('express-json');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var sanitizer = require('sanitizer');
+var dateUtil = require('date-util');
 
 // You will also need to replace the server name with the details given by
 // couchdb. Will need to include password and user name if this is setup in couchdb
 // "http://user:password@addressToCouchdb"
-var nano = require('nano')('http://ojd2:LW9Rh9pd@pc3-035-l.cs.st-andrews.ac.uk:20148');
+var nano = require('nano')('http://ojd2:3VWKFcnR@pc3-016-l.cs.st-andrews.ac.uk:20148');
 // var nano = require('nano')('http://ojd2:q4vPxRFF@localhost:5984');
 
 
@@ -44,10 +45,10 @@ var weather_db = nano.db.use('weather'); // Reference to the database storing th
 // Add updated weather information to CouchDB
 //---------------------------------------------------------------------------------------------------
 //---------------------------------------------------------------------------------------------------
-function updateWeather_db(entryID, weather) {
+function updateWeatherForecast_db(entryID, weather) {
     weather_db.insert(entryID, 'entryID', function(err_e, e) {
         weather_db.insert(weather, 'weather_data', function(err_t, t) { 
-            console.log("Added weather item to CouchDB");
+            console.log("Added weather forecast item to CouchDB");
             console.log(err_e);
             console.log(err_t);
         });
@@ -75,15 +76,15 @@ function addweather(req, res) {
             var next_entry = entryID["next_entry"];
             weather_db.get('weather_data', { revs_info : true }, function (err, weather) {
                 if (!err) {
-                    var now = new Date();
-                    var jsonDate = now.toJSON();
+                    var now = new Date().format("ddd d mmmm yyyy : HH:MM:ss");  
+                    var jsonDate = now;
                     weather["weather_history"][next_entry] = { city: city, lon: lon, lat: lat, country: country, overview: overview, 
-                        description: description, dateSubmit: jsonDate};
+                    description: description, dateSubmit: jsonDate};
                     entryID["next_entry"] = next_entry + 1;
-                    console.log("Submitted the weather for the following: " + city );
+                    console.log("Submitted the weather forecast meta for the following: " + city + " @ " + jsonDate );
                     // Add the new data to CouchDB (separate function since
                     // otherwise the callbacks get very deeply nested!)
-                    updateWeather_db(entryID, weather);
+                    updateWeatherForecast_db(entryID, weather);
 
                     res.writeHead(201, {'Location' : next_entry});
                     res.end();

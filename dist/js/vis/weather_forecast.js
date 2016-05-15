@@ -1,5 +1,6 @@
-var dataPathForecast = ForcastURL;
-console.log(dataPathForecast);
+function weatherGraphForecast(ForcastURL) {
+	var dataPathForecast = ForcastURL;
+	console.log('visual called for : ' + dataPathForecast);
 	
 	var margin = {top: 20, right: 30, bottom: 120, left: 40},
 		width = 500 - margin.left - margin.right,
@@ -87,27 +88,6 @@ console.log(dataPathForecast);
 		.attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; })
 		.on('mouseover', tip.show)
 		.on('mouseout', tip.hide)
-		/*.on("mouseenter", function(d,i){
-			d3.select(this)
-			.append("text")
-			.attr("x", barWidth / 2)
-			.attr("y", function(d) { return y(d.main.temp) + 3; })
-			.attr("dy", ".75em")
-			.attr("class", "tempToolTip")
-			.text(function(d) { return d.main.temp + " °C" })
-		})
-		.on("mouseout", function(d,i){
-			d3.selectAll(".tempToolTip")
-			.remove()
-		})*/
-		
-		// d3.select(".forecastChart")
-		// .append("text")
-		// .attr("text-anchor", "start")
-		// .attr("y", 30)
-		// .attr("x", 250)
-		// .text(function(d) { return cityName + " weather forecast"})
-		// .style("font-size", 26)
 		
 		forecastChart.append("g")
 		.attr("class", "x axis")
@@ -164,15 +144,8 @@ console.log(dataPathForecast);
 			})
 		})
 	})
-
-		/*bar.append("text")
-		.attr("x", barWidth / 2)
-		.attr("y", function(d) { return y(d.main.temp) + 3; })
-		.attr("dy", ".75em")
-		.text(function(d) { return d.main.temp; });
-	//});*/
-
 	function type(d) {
 	  d.main.temp = +d.main.temp; // coerce to number
 	  return d;
 	}
+}

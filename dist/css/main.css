@@ -99,26 +99,73 @@ p {
 	padding: 8px 50px 8px 50px;
 	font-size:16px;
 }
-/* Main Graph 1 on Homepage */
-#graph-1 {
-	height:650px;
+/* Introduction */
+#introduction {
+	height:100%;
 	display: block;
 	margin:0 auto;
 	padding:0 auto;
+	text-align: center;
 	background:#23293F;
 	-webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
     box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
 }
+#introduction-meta {
+	color:#ffffff;
+	height:100%;
+	width:100%;
+	text-align: center;
+	font-family: 'Noto Sans', sans-serif; 
+}
+#introduction-meta h1 {
+	padding-bottom:15px;
+	border-bottom: solid white 0.5px;
+}
+#introduction-meta-info {
+	color:#ffffff;
+	height:100%;
+	width:100%;
+	text-align: center;
+	font-family: 'Noto Sans', sans-serif; 
+}
+/* Main Graph 1 on Homepage */
+#graph-1 {
+	height:100%;
+	display: block;
+	margin:0 auto;
+	padding:0 auto;
+	background:#23293F;
+}
 #graph-1 .graph-text {
 	padding:50px;
 }
-#graph-1 .graph-text h1 {
+#graph-1 .graph-text h1, h2 {
 	padding:20px 0px;
-	color:white;
+	color:#fff;
+}
+#graph-1 .graph-text h2 {
+	font-size:26px;
 }
 #graph-1 .graph-text p {
-	color:white;
+	color:#fff;
+}
+#graph-1 #graph-1-meta {
+	padding:55px 0px 0px 0px;
+	margin: 0 auto;
+}
+#graph-1 #graph-1-meta  h2 {
+	padding:5px !important;
+	margin:0 auto !important;
+}
+#graph-1 #graph-1-meta  p {
+	padding:5px !important;
+	font-size:14px;
+	margin:0 auto !important;
+}
+#graph-1 #graph-1-meta .weather-meta-desc {
+	padding:20px 0px !important;
+	font-size:16px;
 }
 #graph-1 .graph-dummy {
 	height:500px;
@@ -202,7 +249,7 @@ footer h4 {
 	font-size:12px;
 	text-transform: uppercase;
 	letter-spacing: 1.5px;
-	padding:0px 0px 10px 0px;
+	padding:50px 0px 10px 0px;
 	border-bottom: 2px solid white;
 }
 
