@@ -15,7 +15,7 @@ var dateUtil = require('date-util');
 // You will also need to replace the server name with the details given by
 // couchdb. Will need to include password and user name if this is setup in couchdb
 // "http://user:password@addressToCouchdb"
-var nano = require('nano')('http://ojd2:3VWKFcnR@pc3-016-l.cs.st-andrews.ac.uk:20148');
+var nano = require('nano')('http://ojd2:Fr4mcrct@pc2-084-l.cs.st-andrews.ac.uk:20148');
 // var nano = require('nano')('http://ojd2:q4vPxRFF@localhost:5984');
 
 
