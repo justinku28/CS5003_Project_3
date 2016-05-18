@@ -22,7 +22,7 @@ function init() {
 // Some globals:
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
-var city, lon, lat, country, overview, description, dateSubmit, weatherForecast, forecastData;
+var city, longitude, latitude, country, overview, description, dateSubmit, searched, weatherForecast, forecastData;
 // ----------------------------------------------------------------------
 // ---------------------------------------------------------------------- 
 // Var Base URL for forecast only. The following variable will store our base URL for all API calls.
@@ -155,7 +155,7 @@ function assignWeather(objects) {
 	Object.keys(objects).forEach(function(k) {
 		console.log("Printed Weather JSON objects associated with the following GET URL above : ");
 		console.log(objects[k]);
-        // Assign objects to global variables.
+    // Assign objects to global variables.
 		city = objects.name;
 		longitude = objects.coord.lon;
 		latitude = objects.coord.lat;
@@ -163,12 +163,14 @@ function assignWeather(objects) {
 		overview = objects.weather[0].main;
 		description = objects.weather[0].description;
 		dateSubmit = objects.dt;
-        tempMax = objects.main.temp_max;
-        tempMin = objects.main.temp_min;
-        airPressure = objects.main.pressure;
-        humidity = objects.main.humidity;
-        windSpeed = objects.wind.speed; 
+    searched = objects.name;
+    tempMax = objects.main.temp_max;
+    tempMin = objects.main.temp_min;
+    airPressure = objects.main.pressure;
+    humidity = objects.main.humidity;
+    windSpeed = objects.wind.speed; 
 	});
+  displayWeatherMeta();
 }
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
@@ -176,7 +178,7 @@ function assignWeather(objects) {
 // as a result, appends the objects.key to the HTML for certain HTML areas.
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
-function displayWeatherMeta(objects) {
+function displayWeatherMeta() {
 		// Append the title of the city to the introduction area in the HTML.
         var title = document.createElement("h1");
         var intro = document.createTextNode("The following weather report is for " + city);
@@ -186,7 +188,7 @@ function displayWeatherMeta(objects) {
         element.appendChild(title);
 
         // Append the more weather information from the collected data to the first graph
-        $("#graph-1-meta").append("<h2>Forecast Meta Information:</h2><br>");
+        $("#graph-1-meta").append("<h2>Today's Weather Meta:</h2><br>");
         $("#graph-1-meta").append("<p><span style='color:#e4bfb0;'>Maximum Temperature:</span> " + tempMax + "</p>");
         $("#graph-1-meta").append("<p><span style='color:#F7E6CB;'>Minimum Temperature:</span> " + tempMin + "</p>");
         $("#graph-1-meta").append("<p><span style='color:#BFA169;'>Air Pressure:</span> " + airPressure + "</p>");
@@ -194,7 +196,7 @@ function displayWeatherMeta(objects) {
         $("#graph-1-meta").append("<p><span style='color:#CAACBC;'>Wind Speed:</span> " + windSpeed + " m/s</p>");
         $("#graph-1-meta").append("<p><span style='color:#D1BFB0;'>Longitude:</span> " + longitude + "</p>");
         $("#graph-1-meta").append("<p><span style='color:#F2EFBD;'>Latitude:</span> " + latitude + "</p>");
-
+        
         // Append the more weather information from the collected data.
         var info = document.createElement("p");
         info.className = "weather-meta-desc";
@@ -204,23 +206,7 @@ function displayWeatherMeta(objects) {
         var metaDesc = document.getElementById("graph-1-meta");
         metaDesc.appendChild(info);
 }
-// ----------------------------------------------------------------------
-// ----------------------------------------------------------------------
-// Fetch the weather data for the particular City that has been called.
-// Then push the weather from couchDB into displayWeatherMeta().
-// ----------------------------------------------------------------------
-// ----------------------------------------------------------------------
-function getHistory(weather){
-   req = new XMLHttpRequest();
-    req.open("GET", "weather");
-    req.setRequestHeader("Content-Type", "text/plain");    
-    req.onreadystatechange = function() {
-  		if (req.readyState == 4) {
-  			displayWeatherMeta(JSON.parse(req.responseText));
-  		}
-    }
-    req.send(null);
-}
+
 
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
@@ -232,15 +218,11 @@ function sendWeather(weather){
     req = new XMLHttpRequest();
     req.open("POST", "weather");
     req.setRequestHeader("Content-Type", "text/plain");
-    req.send('{"city":"'+city+'","lon":"'+longitude+'","lat":"'+latitude+'","country":"'+country+'","overview":"'+overview
-        +'","description":"'+description+'","dateSubmit":"'+dateSubmit+'","tempMax":"'+tempMax+'","tempMin":"'+tempMin
-        +'","airPressure":"'+airPressure+'","windSpeed":"'+windSpeed+'","humidity":"'+humidity+'"}');
+    req.send('{"city":"'+city+'","searchedAt":"'+dateSubmit+'"}');
     req.onreadystatechange = function() {
         //console.log(req.responseText);
      	if (req.readyState == 4) {
-     		console.log('Sent weather objects for: City: ' + city + ", Description: " + overview);
-     		// Call fetchTemp
-     		getHistory();	
+     		console.log('Sent weather objects for: City: ' + city);
      	}
     }
     // req.send(weather);
@@ -258,10 +240,9 @@ function getAPIResponse(url) {
         // Call method and parse our response.
     	if (req.readyState == 4) {
     		console.log('Print the following GET URL:' + url);
-            assignWeather(JSON.parse(req.responseText));
-
-    		// Call the sendWeather() method
-			sendWeather(JSON.parse(req.responseText));
+        assignWeather(JSON.parse(req.responseText));
+      	// Call the sendWeather() method
+  			sendWeather(JSON.parse(req.responseText));
    		}
     }
     req.send(null);
