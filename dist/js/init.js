@@ -51,7 +51,6 @@ var baseURLWeather = "http://api.openweathermap.org/data/2.5/weather?q=";
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 var API = "&appid=" + "be0b44175983b4c5337b54cbf2356b9c";
-// var ForecastURL, WeatherURL;
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 // The following APIForecast() function calls the API URL for forcast only along with the city parameter.
@@ -77,16 +76,24 @@ APIWeather("New York");
 // Hide the comparison section onLoad and show onCLick.
 $("#graph-2").hide();
 // ----------------------------------------------------------------------
-// Function to call the previous search term and display previous graph.
+// Function to call the both previous / current search terms.
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 function APIPrev(city) {
   PrevForecastURL = baseURLForcast + city + "&units=metric" + API; // Create another base URL
-  alert(PrevForecastURL);
+  // Clear the appended HTML for replacement onClick.
   $("#prev-area h1").remove();
+  // Now callback the following functions:
   displayPrevWeatherMeta(previous);
   prevWeatherGraph(PrevForecastURL);
-  console.log('Prev URL for API call : ' + PrevForecastURL);
+}
+function APICurrent(city) {
+  PrevForecastURL = baseURLForcast + city + "&units=metric" + API; // Create another base URL
+  // Clear the appended HTML for replacement onClick.
+  $("#current-area h1").remove();
+  // Now callback the following functions:
+  displayCurrentWeatherMeta(previous);
+  currentGraphForecast(PrevForecastURL);
 }
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
@@ -108,10 +115,11 @@ btn.onclick = function() {
     // Update charts
     $(".forecast_chart").empty();
     $(".prevGraph").empty();
+    $(".currentGraph").empty();
     // Store the last searched city into the 'previous' var.
-    //prevWeatherGraph(previous);
     console.log('Previous :' + previous);
     APIPrev(previous);
+    APICurrent(input);
 
     // Start to callback our API URL functions but for the user input instead.
     APIForecast(input);
@@ -210,7 +218,6 @@ function displayWeatherMeta() {
         // Assign the DOM created elements to the HTML area.
         var element = document.getElementById("introduction-meta");
         element.appendChild(title);
-
         // Append the more weather information from the collected data to the first graph
         $("#graph-1-meta").append("<h2>Today's Weather Meta:</h2><br>");
         $("#graph-1-meta").append("<p><span style='color:#e4bfb0;'>Maximum Temperature:</span> " + tempMax + "</p>");
@@ -220,7 +227,6 @@ function displayWeatherMeta() {
         $("#graph-1-meta").append("<p><span style='color:#CAACBC;'>Wind Speed:</span> " + windSpeed + " m/s</p>");
         $("#graph-1-meta").append("<p><span style='color:#D1BFB0;'>Longitude:</span> " + longitude + "</p>");
         $("#graph-1-meta").append("<p><span style='color:#F2EFBD;'>Latitude:</span> " + latitude + "</p>");
-        
         // Append the more weather information from the collected data.
         var info = document.createElement("p");
         info.className = "weather-meta-desc";
@@ -237,16 +243,35 @@ function displayWeatherMeta() {
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 function displayPrevWeatherMeta(city) {
-    console.log('displayPrevWeatherMeta()');
-    // Append the title of the city to the prevGraph area in the HTML.
+        console.log('displayPrevWeatherMeta()');
+        // Create another prototype to capitalize the first letter of input city.
+        String.prototype.capitalizeFirstLetter = function() {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        }
+        var prevCapital = city.capitalizeFirstLetter();
+        // Append the previous weather city information to the prevGraph area in the HTML.
         var title = document.createElement("h1");
-        var intro = document.createTextNode("The following weather report is for " + city);
+        var intro = document.createTextNode("The following previous weather report is for " + prevCapital);
         title.appendChild(intro);
         // Assign the DOM created elements to the HTML area.
         var element = document.getElementById("prev-area");
         element.appendChild(title);
 }
-
+function displayCurrentWeatherMeta() {
+        console.log('displayCurrentWeatherMeta()');
+        // Create another prototype to capitalize the first letter of input city.
+        String.prototype.capitalizeFirstLetter = function() {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        }
+        var currentCapital = input.capitalizeFirstLetter();
+        // Append the current weather city information to the currentGraph area in the HTML.
+        var title = document.createElement("h1");
+        var intro = document.createTextNode("The following active weather report is for " + currentCapital);
+        title.appendChild(intro);
+        // Assign the DOM created elements to the HTML area.
+        var element = document.getElementById("current-area");
+        element.appendChild(title);
+}
 
 
 // ----------------------------------------------------------------------
@@ -267,7 +292,6 @@ function sendWeather(weather){
      		console.log('Sent weather objects for: City: ' + city);
      	}
     }
-    // req.send(weather);
 }
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
@@ -290,9 +314,7 @@ function getAPIResponse(url) {
     req.send(null);
 }
 
-// Call our getResponse(); method for a Forecast
-//getAPIResponse(ForecastURL);
-// Call our getResponse(); method for a Weather
+// Call our getResponse(); for Weather API URL for sending to couchDB.
 getAPIResponse(WeatherURL);
 
 // ----------------------------------------------------------------------
@@ -431,7 +453,7 @@ getAPIResponse(WeatherURL);
     google.maps.event.addDomListener(window, 'load', mapInitialize);
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
-// Generate Graph 1
+// Generate Graph for Searched Forecast
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 function weatherGraphForecast(ForecastURL) {
@@ -585,7 +607,161 @@ function weatherGraphForecast(ForecastURL) {
 }
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
-// Generate Graph for Previous searched URL.
+// Generate Graph for Searched Forecast for Comparison section.
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+function currentGraphForecast(ForecastURL) {
+    var dataPathForecast = ForecastURL;
+    console.log('weatherGraphForecast() visual called for : ' + dataPathForecast);
+    
+    var margin = {top: 20, right: 30, bottom: 120, left: 40},
+        width = 500 - margin.left - margin.right,
+        height = 300 - margin.top - margin.bottom;
+
+    var width = 500,
+        height = 300;
+        
+    var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+    
+    var y = d3.scale.linear()
+        .range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+    var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+        
+    var tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(function(d) {
+        var weatherTooltip = "<center>"
+        weatherTooltip += '<strong class="dateTimeTitle">' + "Date: " + d.dt_txt.toString().slice(0,11) + '<span style="color:#333;">@</span>' + '<span style="color:#324D5C;"> ' + d.dt_txt.toString().slice(11,16) + '</span>' + "</strong><br>"
+        if(d.weather[0].main === "Clear"){
+                weatherTooltip += "<img src='http://openweathermap.org/img/w/01d.png' class='icons'><br>"
+            } else if (d.weather[0].main === "Rain"){
+                weatherTooltip += "<img src='http://openweathermap.org/img/w/10d.png' class='icons'><br>"
+            } else if (d.weather[0].main === "Rain" & d.weather[0].description === "shower rain"){
+                weatherTooltip += "<img src='http://openweathermap.org/img/w/09d.png' class='icons'><br>"
+            } else if (d.weather[0].main === "Clouds" & d.weather[0].description === "scattered clouds"){
+                weatherTooltip += "<img src='http://openweathermap.org/img/w/03d.png' class='icons'><br>"
+            } else if (d.weather[0].main === "Clouds" & d.weather[0].description === "few clouds"){
+                weatherTooltip += "<img src='http://openweathermap.org/img/w/03d.png' class='icons'><br>"
+            } else if (d.weather[0].main === "Clouds" & d.weather[0].description === "broken clouds"){
+                weatherTooltip += "<img src='http://openweathermap.org/img/w/04d.png' class='icons'><br>"
+            } else if (d.weather[0].main === "Clouds" & d.weather[0].description === "overcast clouds"){
+                weatherTooltip += "<img src='http://openweathermap.org/img/w/04d.png' class='icons'><br>"
+            } else if (d.weather[0].main === "Snow"){
+                weatherTooltip += "<img src='http://openweathermap.org/img/w/13d.png' class='icons'><br>"
+            } else if (d.weather[0].main === "Mist"){
+                weatherTooltip += "<img src='http://openweathermap.org/img/w/50d.png' class='icons'><br>"
+            } else {
+                weatherTooltip += d.weather[0].main + " - "
+            }
+        weatherTooltip += '<strong class="weatherTitle"> Weather:</strong> ' + d.weather[0].description.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) + "</strong><br>"   
+        //weatherTooltip += "<span style='color:red'>" + d.weather[0].description + "</span><br>"
+        weatherTooltip += '<strong class="tempTitle">Temperature:</strong> <span style="color:#6c6596">' + d.main.temp + " °C" + "</span><br>"
+        if(d.weather[0].main === "Rain"){
+            weatherTooltip += '<strong class="precepTitle">Precipitation:</strong> <span style="color:#6c6596">' + d.rain['3h'] + " mm" + "</span><br>"
+        } else {
+            weatherTooltip
+        }
+        weatherTooltip += '<strong class="windTitle">Wind Speed:</strong> <span style="color:#6c6596">' + "<img src='img/pic/arrow.png' style='width:15px;height:15px;transform: rotate(" + d.wind.deg + "deg)'> " + d.wind.speed + " m/s" + "</span><br>"
+        weatherTooltip += "</center>"
+        
+        return  weatherTooltip ;
+    })
+    
+    var forecastChart = d3.select(".currentGraph")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    forecastChart.call(tip);
+        
+    d3.json(dataPathForecast, function(error, data){
+    forecastData = data;
+    prevWeatherForecast = data.list;
+    x.domain(prevWeatherForecast.map(function(d) { return d.dt_txt.toString().slice(0, 11)}));
+    y.domain([0, d3.max(prevWeatherForecast, function(d) { return d.main.temp + 5 })]);
+
+    var barWidth = width / prevWeatherForecast.length;
+
+    var forecastBar = forecastChart.selectAll("g")
+        .data(prevWeatherForecast)
+        .enter().append("g")
+        .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; })
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide)
+        
+        forecastChart.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+        .selectAll("text")
+        .attr("y", 0)
+        .attr("x", 9)
+        .attr("d", ".5em")
+        .attr("transform", "rotate(60)")
+        .style("text-anchor", "start")
+
+        forecastChart.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+        forecastBar.append("rect")
+        .attr("y", function(d) { return y(d.main.temp); })
+        .attr("height", function(d) { return height - y(d.main.temp); })
+        .attr("width", barWidth - 1)
+        .attr("class", "dataBars")
+        .style("fill", function(d) {
+            if (d.weather[0].main == "Thunderstorm") {return "#3B3F45"}
+            if (d.weather[0].main == "Rain") {return "#75766D"}
+            if (d.weather[0].main == "Drizzle") {return "#ADA190"}
+            if (d.weather[0].main == "Snow") {return "#FFFFFF"}
+            if (d.weather[0].main == "Atmosphere") {return "#F7E6CB"}
+            if (d.weather[0].main == "Clouds" & d.weather[0].description != "sky is clear") {return "#E4BFB0"}
+            if (d.weather[0].main == "Extreme") {return "#CAACBC"}
+            if (d.weather[0].main == "Clear") {return "#F2F2F2"}
+        })
+        .style("stroke", "#23293f")
+        .on("mouseenter", function(d,i){
+            d3.select(this)
+            .transition()
+            .duration(250)
+            .style("stroke", "#fdbe6a")
+            .style("fill", "#fdbe6a")
+        })
+        .on("mouseout", function(d,i){
+            d3.select(this)
+            .transition()
+            .duration(250)
+            .style("stroke", "#23293f")
+            .style("fill", function(d) {
+                if (d.weather[0].main == "Thunderstorm") {return "#3B3F45"}
+                if (d.weather[0].main == "Rain") {return "#75766D"}
+                if (d.weather[0].main == "Drizzle") {return "#ADA190"}
+                if (d.weather[0].main == "Snow") {return "#FFFFFF"}
+                if (d.weather[0].main == "Atmosphere") {return "#F7E6CB"}
+                if (d.weather[0].main == "Clouds" & d.weather[0].description != "sky is clear") {return "#E4BFB0"}
+                if (d.weather[0].main == "Extreme") {return "#CAACBC"}
+                if (d.weather[0].main == "Clear") {return "#F2F2F2"}
+            })
+        })
+    })
+    function type(d) {
+      d.main.temp = +d.main.temp; // coerce to number
+      return d;
+    }
+}
+// ----------------------------------------------------------------------
+// ----------------------------------------------------------------------
+// Generate Graph for Previous chart for comparison section.
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 function prevWeatherGraph(PrevForecastURL) {

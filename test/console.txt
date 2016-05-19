@@ -1,0 +1,135 @@
+
+weatherGraphForecast() visual called for : http://api.openweathermap.org/data/2.5/forecast?q=New York&units=metric&appid=be0b44175983b4c5337b54cbf2356b9c
+init.js (line 468)
+
+GET http://api.openweathermap.org/data/2.5/forecast?q...ts=metric&appid=be0b44175983b4c5337b54cbf2356b9c
+200 OK 60ms	d3.v3.min.js (line 1)
+
+GET http://api.openweathermap.org/data/2.5/weather?q=...ts=metric&appid=be0b44175983b4c5337b54cbf2356b9c
+200 OK 37ms	init.js (line 319)
+
+ParamsHeadersResponseJSON:
+{"coord":{"lon":-74.01,"lat":40.71},"weather":[{"id":803,"main":"Clouds","description":"broken clouds"
+,"icon":"04d"}],"base":"stations","main":{"temp":15.25,"pressure":1020,"humidity":51,"temp_min":13,"temp_max"
+:17},"visibility":16093,"wind":{"speed":1.27,"deg":35.0011},"clouds":{"all":75},"dt":1463664536,"sys"
+:{"type":1,"id":1975,"message":0.4131,"country":"US","sunrise":1463650474,"sunset":1463703068},"id":5128581
+,"name":"New York","cod":200}
+
+getAPIResponse() for :http://api.openweathermap.org/data/2.5/weather?q=New York&units=metric&appid=be0b44175983b4c5337b54cbf2356b9c
+init.js (line 313)
+
+assignWeather()
+init.js (line 188)
+
+displayWeatherMeta()
+init.js (line 215)
+
+
+sendWeather()
+init.js (line 288)
+
+POST http://127.0.0.1:5984/weather
+	
+201 Created 58ms	
+init.js (line 292)
+
+HeadersPostXML
+
+Connection	: keep-alive
+Date	: Thu, 19 May 2016 13:34:34 GMT
+Location	: 55
+Transfer-Encoding	: chunked
+X-Powered-By	: Express
+view source: Accept	text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language	: en-GB,en;q=0.5
+Content-Length	: 45
+Content-Type	: text/plain; charset=UTF-8
+Host	: 127.0.0.1:5984
+Referer	: http://127.0.0.1:5984/index.html
+
+User-Agent	: Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:42.0) Gecko/20100101 Firefox/42.0
+
+Sent weather objects for: City: New York
+init.js (line 296)
+
+GET http://api.openweathermap.org/data/2.5/box/city?b...rmat=json&APPID=be0b44175983b4c5337b54cbf2356b9c
+	
+200 OK 40ms	init.js (line 394)
+
+ParamsHeadersResponseJSON:
+
+{"cod":"200","calctime":0.0031,"cnt":22,"list":[{"id":4393217,"name":"Kansas City","coord":{"lon":-94
+.578568,"lat":39.099731},"main":{"temp":9.38,"pressure":1021,"humidity":93,"temp_min":7,"temp_max":11
+.67},"dt":1463661557,"wind":{"speed":1.5,"deg":50},"clouds":{"all":1},"weather":[{"id":701,"main":"Mist"
+,"description":"mist","icon":"50d"}]},{"id":4407066,"name":"Saint Louis","coord":{"lon":-90.197891,"lat"
+:38.62727},"main":{"temp":10.07,"pressure":1022,"humidity":93,"temp_min":8,"temp_max":12.22},"dt":1463661558
+,"wind":{"speed":1.32,"deg":356},"rain":{"1h":0.25},"clouds":{"all":1},"weather":[{"id":500,"main":"Rain"
+,"description":"light rain","icon":"10d"}]},{"id":4846834,"name":"Ames","coord":{"lon":-93.619942,"lat"
+:42.03471},"main":{"temp":9,"pressure":1022,"humidity":93,"temp_min":7,"temp_max":11},"dt":1463661604
+,"wind":{"speed":1.5,"deg":130},"clouds":{"all":1},"weather":[{"id":800,"main":"Clear","description"
+:"Sky is Clear","icon":"01d"}]},{"id":4379966,"name":"Cape Girardeau","coord":{"lon":-89.51815,"lat"
+:37.305882},"main":{"temp":9.59,"pressure":1021,"humidity":100,"temp_min":8.33,"temp_max":11},"dt":1463661556
+,"wind":{"speed":3.42,"deg":38.0001},"clouds":{"all":1},"weather":[{"id":800,"main":"Clear","description"
+:"Sky is Clear","icon":"01d"}]},{"id":4245152,"name":"Mount Vernon","coord":{"lon":-88.903122,"lat":38
+.317268},"main":{"temp":10.74,"pressure":1022,"humidity":87,"temp_min":9,"temp_max":13},"dt":1463661534
+,"wind":{"speed":1.5,"deg":40},"clouds":{"all":1},"weather":[{"id":800,"main":"Clear","description":"Sky
+ is Clear","icon":"01d"}]},{"id":4299276,"name":"Louisville","coord":{"lon":-85.759407,"lat":38.254238
+},"main":{"temp":10.67,"pressure":1022,"humidity":71,"temp_min":10,"temp_max":11},"dt":1463661542,"wind"
+:{"speed":2.1,"deg":340},"clouds":{"all":40},"weather":[{"id":802,"main":"Clouds","description":"scattered
+ clouds","icon":"03d"}]},{"id":4297983,"name":"Lexington","coord":{"lon":-84.477722,"lat":37.988689}
+,"main":{"temp":9.92,"pressure":1021,"humidity":81,"temp_min":7,"temp_max":12},"dt":1463661542,"wind"
+:{"speed":2.1,"deg":60},"clouds":{"all":1},"weather":[{"id":741,"main":"Fog","description":"fog","icon"
+:"50d"}]},{"id":4250542,"name":"Springfield","coord":{"lon":-89.643707,"lat":39.80172},"main":{"temp"
+:10.12,"pressure":1023,"humidity":87,"temp_min":9,"temp_max":11.67},"dt":1463661534,"wind":{"speed":1
+.32,"deg":31.0001},"clouds":{"all":1},"weather":[{"id":800,"main":"Clear","description":"Sky is Clear"
+,"icon":"01d"}]},{"id":4887158,"name":"Champaign","coord":{"lon":-88.243378,"lat":40.116421},"main":
+{"temp":10.53,"pressure":1023,"humidity":76,"temp_min":9,"temp_max":12.78},"dt":1463661607,"wind":{"speed"
+:2.6,"deg":70},"clouds":{"all":1},"weather":[{"id":800,"main":"Clear","description":"Sky is Clear","icon"
+:"01d"}]},{"id":4887398,"name":"Chicago","coord":{"lon":-87.650047,"lat":41.850029},"main":{"temp":8
+.96,"pressure":1023,"humidity":62,"temp_min":6,"temp_max":12.22},"dt":1463661607,"wind":{"speed":0.67
+,"deg":271.5},"clouds":{"all":20},"weather":[{"id":701,"main":"Mist","description":"mist","icon":"50d"
+}]},{"id":5261457,"name":"Madison","coord":{"lon":-89.40123,"lat":43.073051},"main":{"temp":8.59,"pressure"
+:1023,"humidity":87,"temp_min":5,"temp_max":11.11},"dt":1463661690,"wind":{"speed":3.02,"deg":228},"clouds"
+:{"all":1},"weather":[{"id":800,"main":"Clear","description":"Sky is Clear","icon":"01d"}]},{"id":4259418
+,"name":"Indianapolis","coord":{"lon":-86.158043,"lat":39.768379},"main":{"temp":10.62,"pressure":1022
+,"humidity":66,"temp_min":8,"temp_max":13.89},"dt":1463661536,"wind":{"speed":3.1,"deg":40},"clouds"
+:{"all":20},"weather":[{"id":801,"main":"Clouds","description":"few clouds","icon":"02d"}]},{"id":4509177
+,"name":"Columbus","coord":{"lon":-82.998787,"lat":39.961182},"main":{"temp":10.28,"pressure":1022,"humidity"
+:70,"temp_min":8,"temp_max":13.33},"dt":1463661567,"wind":{"speed":2.1,"deg":350},"clouds":{"all":1}
+,"weather":[{"id":800,"main":"Clear","description":"Sky is Clear","icon":"01d"}]},{"id":4990729,"name"
+:"Detroit","coord":{"lon":-83.045753,"lat":42.331429},"main":{"temp":10.59,"pressure":1023,"humidity"
+:81,"temp_min":8.89,"temp_max":13.1},"dt":1463661636,"wind":{"speed":1,"deg":0},"clouds":{"all":20},"weather"
+:[{"id":801,"main":"Clouds","description":"few clouds","icon":"02d"}]},{"id":6167865,"name":"Toronto"
+,"coord":{"lon":-79.416298,"lat":43.700111},"main":{"temp":11.92,"pressure":1022,"humidity":50,"temp_min"
+:11,"temp_max":13.33},"dt":1463661800,"wind":{"speed":3.1,"deg":330},"clouds":{"all":90},"weather":[
+{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04d"}]},{"id":4781708,"name":"Richmond"
+,"coord":{"lon":-77.460258,"lat":37.553761},"main":{"temp":14.01,"pressure":1020,"humidity":82,"temp_min"
+:13,"temp_max":15},"dt":1463661599,"wind":{"speed":3.1,"deg":10},"clouds":{"all":90},"weather":[{"id"
+:804,"main":"Clouds","description":"overcast clouds","icon":"04d"}]},{"id":4791259,"name":"Virginia Beach"
+,"coord":{"lon":-75.977982,"lat":36.852928},"main":{"temp":15.89,"pressure":1019,"humidity":63,"temp_min"
+:15,"temp_max":17},"dt":1463661599,"wind":{"speed":4.1,"deg":30},"clouds":{"all":20},"weather":[{"id"
+:801,"main":"Clouds","description":"few clouds","icon":"02d"}]},{"id":4347778,"name":"Baltimore","coord"
+:{"lon":-76.61219,"lat":39.290379},"main":{"temp":13.2,"pressure":1020,"humidity":67,"temp_min":12,"temp_max"
+:15},"dt":1463661550,"wind":{"speed":2.42,"deg":352},"clouds":{"all":90},"weather":[{"id":804,"main"
+:"Clouds","description":"overcast clouds","icon":"04d"}]},{"id":5128581,"name":"New York","coord":{"lon"
+:-74.005966,"lat":40.714272},"main":{"temp":13.47,"pressure":1020,"humidity":62,"temp_min":12,"temp_max"
+:15.6},"dt":1463661667,"wind":{"speed":1.5,"deg":230},"clouds":{"all":75},"weather":[{"id":803,"main"
+:"Clouds","description":"broken clouds","icon":"04d"}]},{"id":5128638,"name":"New York","coord":{"lon"
+:-75.499901,"lat":43.000351},"main":{"temp":10.17,"pressure":1022,"humidity":81,"temp_min":7,"temp_max"
+:15},"dt":1463661667,"wind":{"speed":1.42,"deg":269},"clouds":{"all":1},"weather":[{"id":800,"main":"Clear"
+,"description":"Sky is Clear","icon":"01d"}]},{"id":4930956,"name":"Boston","coord":{"lon":-71.059769
+,"lat":42.358429},"main":{"temp":12.98,"pressure":1020,"humidity":76,"temp_min":11,"temp_max":16.8},"dt"
+:1463661624,"wind":{"speed":2.17,"deg":69.5001},"clouds":{"all":90},"weather":[{"id":804,"main":"Clouds"
+,"description":"overcast clouds","icon":"04d"}]},{"id":6324729,"name":"Halifax","coord":{"lon":-63.572392
+,"lat":44.645329},"main":{"temp":14.97,"pressure":1021,"humidity":66,"temp_min":12.78,"temp_max":21.11
+},"dt":1463661805,"wind":{"speed":3.1,"deg":110},"clouds":{"all":20},"weather":[{"id":801,"main":"Clouds"
+,"description":"few clouds","icon":"02d"}]}]}
+
+Google Maps API warning: NoApiKeys https://developers.google.com/maps/documentation/javascript/error-messages#no-api-keys
+util.js (line 222)
+GET http://api.openweathermap.org/data/2.5/box/city?b...rmat=json&APPID=be0b44175983b4c5337b54cbf2356b9c
+	
+200 OK
+		58ms	
+init.js (line 394)
