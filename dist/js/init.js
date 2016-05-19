@@ -22,7 +22,7 @@ function init() {
 // Some globals:
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
-var city, lon, lat, country, overview, description, dateSubmit;
+var city, lon, lat, country, overview, description, dateSubmit, weatherForecast, forecastData;
 // ----------------------------------------------------------------------
 // ---------------------------------------------------------------------- 
 // Var Base URL for forecast only. The following variable will store our base URL for all API calls.
@@ -58,7 +58,7 @@ var API = "&appid=" + "be0b44175983b4c5337b54cbf2356b9c";
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 function APIForcast(city) {
-	ForcastURL = baseURLForcast + city + API; // Create another base URL
+	ForcastURL = baseURLForcast + city + "&units=metric" + API; // Create another base URL
     weatherGraphForecast(ForcastURL);
 }
 // ----------------------------------------------------------------------
@@ -68,7 +68,7 @@ function APIForcast(city) {
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
 function APIWeather(city) {
-	WeatherURL = baseURLWeather + city + API; // Create another base URL.
+	WeatherURL = baseURLWeather + city + "&units=metric" + API; // Create another base URL.
 }
 // ----------------------------------------------------------------------
 // ----------------------------------------------------------------------
@@ -88,9 +88,11 @@ btn.onclick = function() {
     $('#basic-addon1').css({'background': '#eee', 'border': '#ccc 1px solid', 'color': '#555'}).html('Generating Results:');
     $('.destination').css({'border': '#ccc 1px solid'});
     // Update charts
+    $(".forecast_chart").empty();
     APIForcast(input);
     APIWeather(input);
     getAPIResponse(WeatherURL);
+
     //getAPIResponse(ForcastURL);
     $('#introduction-meta h1').fadeOut(1000);
     $('#introduction-meta h1').fadeIn(2000)
@@ -486,8 +488,8 @@ function weatherGraphForecast(ForcastURL) {
         
     d3.json(dataPathForecast, function(error, data){
     console.log(data);
-    var forecastData = data;
-    var weatherForecast = data.list
+    forecastData = data;
+    weatherForecast = data.list
     console.log(weatherForecast)
     x.domain(weatherForecast.map(function(d) { return d.dt_txt.toString().slice(0, 11)}));
     y.domain([0, d3.max(weatherForecast, function(d) { return d.main.temp + 5 })]);
