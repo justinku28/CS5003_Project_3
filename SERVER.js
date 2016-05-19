@@ -65,11 +65,6 @@ function updateWeatherForecast_db(entryID, weather) {
 function addweather(req, res) {
     var weather = JSON.parse(req.body);
     var city = weather.city;
-    var lon = weather.lon;
-    var lat = weather.lat;
-    var country = weather.country;
-    var overview = weather.overview;
-    var description = weather.description;
 
     weather_db.get('entryID', { revs_info : true }, function (err, entryID) {
         if (!err) {
@@ -78,8 +73,7 @@ function addweather(req, res) {
                 if (!err) {
                     var now = new Date().format("ddd d mmmm yyyy : HH:MM:ss");  
                     var jsonDate = now;
-                    weather["weather_history"][next_entry] = { city: city, lon: lon, lat: lat, country: country, overview: overview, 
-                    description: description, dateSubmit: jsonDate};
+                    weather["weather_history"][next_entry] = { city: city, dateSubmit: jsonDate};
                     entryID["next_entry"] = next_entry + 1;
                     console.log("Submitted the weather forecast meta for the following: " + city + " @ " + jsonDate );
                     // Add the new data to CouchDB (separate function since
