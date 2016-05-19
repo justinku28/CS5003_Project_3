@@ -35,8 +35,8 @@
     <div class="container">
     	<div class="row">
     		<nav class="main_nav">
-    		<div id="logo" class="pull-left col-md-2"><h1>Datata</h1></div>
-    		<div class="pull-right navigation">
+    		<div id="logo" class="pull-left col-md-2 col-xs-12"><h1>Datata</h1></div>
+    		<div class="pull-right navigation col-md-4 col-xs-12">
     			<ul id="home_navigation">
     			<li><a href="">Home</a></li>
     			<li><a href="">About</a></li>
@@ -99,14 +99,17 @@
   <div id="graph-2">
     <div class="container">
       <div class="row">
-        <div class="graph-text col-md-6">
-            <h1>Previous search result:</h1>
-           
+        <div class="graph-2-intro" class="center-block col-md-12 col-xs-12">
+            <h1>Comparison of the last two searches</h1>
         </div>
-        <div class="graph-wrapper col-md-6">
-        <h1>Current search item</h1>
-           
+        <div class="graph-wrapper col-md-6 col-xs-12">
+            <h2>Current search item</h2>
+            <svg class="currentGraph"></svg>
         </div>
+        <div id="prev-area" class="graph-text col-md-6 col-xs-12">
+           <svg class="prevGraph"></svg>
+        </div>
+        
       </div><!-- /. End /.container -->
     </div><!-- /. End /.row -->
   </div><!-- End /.graph-2 -->

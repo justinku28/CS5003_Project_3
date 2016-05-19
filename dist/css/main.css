@@ -180,7 +180,7 @@ p {
 	display: block;
 	margin:0 auto;
 	padding:0 auto;
-	background:#D8D6D5;
+	background:#191025;
 	-webkit-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
     box-shadow: 0px 5px 86px -19px rgba(0,0,0,0.75);
@@ -191,16 +191,29 @@ p {
 }
 #graph-2 .graph-text h1 {
 	padding:20px 0px;
-	color:#6C6596;
+	color:#fff;
 }
 #graph-2 .graph-text p {
-	color:#6C6596;
+	color:#fff;
 }
 #graph-2 .graph-dummy {
 	height:500px;
 	margin:50px 0px;
 	display:block;
 	background:white;
+}
+#graph-2 .graph-2-intro {
+	text-align: center;
+	color:white;
+}
+#graph-2 .graph-2-intro h1 {
+	border-bottom: 0.5px solid white;
+    padding-bottom: 15px;
+}
+#prev-area h1 {
+	font-size: 15px;
+    font-style: italic;
+    text-align: center;
 }
 /* Main Graph-map on Homepage */
 #graph-map {
@@ -255,4 +268,65 @@ footer h4 {
 
 footer p {
 	font-size:12px;
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 780px) {
+#wrapper {
+	height: 100%;
+}
+#logo {
+	text-align: center;
+}
+#promo h1 {
+	font-size:36px;
+	text-align:center;
+}
+.promo_text {
+	width:100%;
+	padding:10px;
+}
+.promo_text h2 {
+	font-size:22px;
+}
+.navigation {
+	padding:5px 0px;
+}
+#home_navigation {
+	text-align: center;
+	padding: 0 !important;
+}
+#basic-addon1 {
+	display:none;
+}
+.forecast_chart {
+	width:100% !important;
+	height: 100% !important;
+}
+.graph-dummy {
+	padding:0px !important;
+	margin:0 auto !important;
+}
+#graph-1 .graph-text  {
+	width:100%;
+	padding:10px !important;
+	margin:0 auto;
+}
+#graph-1-meta {
+	width:100%;
+	padding:10px !important;
+	margin:0 auto;
+	text-align: center;
+}
+#graph-map {
+	margin:0 auto;
+	padding:10px;
+}
+#graph-map .graph-text h1 {
+	font-size:36px;
+	text-align:center;
+}
+#graph-map .graph-text p {
+	font-size:14px;
+}
 }
