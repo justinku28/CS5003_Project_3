@@ -6,11 +6,9 @@
 // couchdb-start
 // THEN: run node SERVER.js -> node DB.js
 // NOTE: *NOT* your school/university username and password!
-var nano = require('nano')('http://ojd2:Fr4mcrct@pc2-084-l.cs.st-andrews.ac.uk:20148');
-// var nano = require('nano')('http://ojd2:q4vPxRFF@localhost:5984');
 // NOTE: Access the portal here: ... /_utils/index.html
-
-// our application's model, populated with some entries and tags
+var nano = require('nano')('http://ojd2:Fr4mcrct@pc2-084-l.cs.st-andrews.ac.uk:20148');
+// Our application's model, populated with some entries and tags
 var entryID = { "next_entry" : 2 };
 var init_history = { "weather_history" :
                     {"1": {"city": "New York", "dateSubmit":"Wed 18 May 2016 : 17:09:21"},  

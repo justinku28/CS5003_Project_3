@@ -16,9 +16,6 @@ var dateUtil = require('date-util');
 // couchdb. Will need to include password and user name if this is setup in couchdb
 // "http://user:password@addressToCouchdb"
 var nano = require('nano')('http://ojd2:Fr4mcrct@pc2-084-l.cs.st-andrews.ac.uk:20148');
-// var nano = require('nano')('http://ojd2:q4vPxRFF@localhost:5984');
-
-
 var weather_db = nano.db.use('weather'); // Reference to the database storing the weather history data
 
 //---------------------------------------------------------------------------------------------------
